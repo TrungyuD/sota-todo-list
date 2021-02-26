@@ -1,22 +1,22 @@
 import React from 'react'
 import './NewTask.css';
+import DatePiority from './DatePiority/DatePiority';
 
 const NewTask = () => {
     return (
-        <div>
-            <div className="content-new-task">
-        <p className="title">New Task</p>
-        <div className="add-input">
-            <input type="text" placeholder="Add new task ..." id="add-new-task"/>
-        </div>
-        <div className="description">
-            <label for="description-input" className="title-label">Description</label>
-            <textarea type="text" id="description-input"/>
-        </div>
-        <button className="btn-add">
-          <span className="text-btn">Add</span>
-        </button>
-      </div>
+        <div className="new-task">
+            <p className="title">New Task</p>
+            <div className="add-new-task">
+                <input type="text" placeholder="Add new task ..."/>
+            </div>
+            <div className="description">
+                <label for="description-input" className="title-label">Description</label>
+                <textarea type="text"/>
+            </div>
+            <DatePiority />
+            <button className="btn-add">
+                <span className="text-btn">Add</span>
+            </button>
         </div>
     )
 }
