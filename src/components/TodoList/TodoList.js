@@ -3,7 +3,7 @@ import './TodoList.css';
 
 const TodoList = () => {
     return (
-        <div className="container-list">
+        <div className="list">
             <div className="content-list">
                 <p className="title">To Do List</p>
                 <div className="search-input">

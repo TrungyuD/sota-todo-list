@@ -1,9 +1,10 @@
 import React from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import calendar from '../../icon/calendar.png';
+import calendar from '../../image/calendar.png';
+import arrow from '../../image/arrow.png';
 import './DatePiority.css';
-import arrow from '../../icon/arrow.png';
+
 const DatePiority = () => {
     return (
         <div className="date-piority">

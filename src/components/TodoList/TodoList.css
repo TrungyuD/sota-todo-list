@@ -1,0 +1,23 @@
+.list{
+    flex: 55%;
+    position: relative;
+}
+.content-list{
+    padding: 0 35px;
+}
+.title {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+.search-input{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.search-input input{
+    font-size: 12px;
+    padding: 10px;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    width: -webkit-fill-available;
+}
