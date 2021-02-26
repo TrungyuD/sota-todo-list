@@ -13,7 +13,7 @@ function NewTask(props){
     });
     const handleChange = (e) => {
         setTask({...task, [e.target.name]:e.target.value})
-    }
+    } 
     const setDate = (date) => {
         setTask({...task, date});
     }
