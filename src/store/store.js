@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
+import bulk from './reducers/bulk';
 import tasks from './reducers/tasks';
 
 const allReducers = combineReducers({
-    tasks: tasks
+    tasks,
+    bulk,
 });
 
 export const store = createStore(

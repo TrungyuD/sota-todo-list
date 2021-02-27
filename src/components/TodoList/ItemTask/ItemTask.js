@@ -1,22 +1,29 @@
 import React, { useState } from 'react'
 import './ItemTask.css';
 import {removeTask} from '../../../store/actions/tasks';
+import {displayBulkAction} from '../../../store/actions/bulk';
 import { connect } from 'react-redux';
+import ItemDetail from './ItemDetail';
 
-const ItemTask = ({task, removeTask}) => {
+const ItemTask = ({task, removeTask, displayBulkAction}) => {
     const [checked, setChecked] = useState(false);
+    const [isDetail, setDetail] = useState(false);
     const handleRemoveTask = () => {
         removeTask(task);
+    }
+    const handleChangeChecked = () => {
+        setChecked(!checked);
+        displayBulkAction(task);
     }
     return (
         <div className="container-item">
             <div className="content-item">
                 <label className="checkbox">
-                    <input type="checkbox" defaultChecked={checked}/>
+                    <input type="checkbox" onChange={handleChangeChecked} defaultChecked={checked}/>
                     <span style={{marginLeft:"0.5rem"}}>{task.title}</span>
                 </label>
                 <div className="">
-                    <button className="btn-detail" >
+                    <button className="btn-detail" onClick={()=>setDetail(!isDetail)}>
                         <span className="text-btn">Detail</span>
                     </button>
                     <button className="btn-remove" onClick={handleRemoveTask}>
@@ -24,10 +31,12 @@ const ItemTask = ({task, removeTask}) => {
                     </button>
                 </div>
             </div>
+            { isDetail && <ItemDetail task={task}/> }
         </div>
     )
 }
 const mapDispatchToProps = {
     removeTask,
+    displayBulkAction
 }
 export default connect(null, mapDispatchToProps)(ItemTask);
