@@ -1,25 +1,32 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './TodoList.css';
 import ItemTask from './ItemTask/ItemTask';
 import { connect } from 'react-redux';
 import {removeTask} from '../../store/actions/tasks';
 import {displayBulkAction} from '../../store/actions/bulk';
+import {searchTask} from '../../store/actions/search';
 
-const TodoList = ({tasks, bulk, removeTask, displayBulkAction}) => {
-    const sortTasks = tasks.sort((a,b) => {
+const TodoList = ({tasks, bulk, search, removeTask, displayBulkAction, searchTask}) => {
+    let sortTasks = tasks.sort((a,b) => {
         return new Date(a.date).getTime() - new Date(b.date).getTime() 
     })
+    if (search) {
+        const length = search.length;
+        sortTasks = sortTasks.filter(item => item.title.substr(0,length) === search);
+    }
     const handleRemoveTask = () => {
         removeTask(bulk.task);
         displayBulkAction();
     }
-    
+    const updateSearchTask = (e) => {
+        searchTask(e.target.value);
+    }
     return (
         <div className="list">
             <div className="content-list">
                 <p className="title">To Do List</p>
                 <div className="search-input">
-                    <input type="text" placeholder="Search ..." id="search"/>
+                    <input type="text" placeholder="Search ..." onChange={updateSearchTask}/>
                 </div>   
                 <div>
                 {
@@ -48,11 +55,13 @@ const TodoList = ({tasks, bulk, removeTask, displayBulkAction}) => {
 const mapStateToProps = (state) => {
     return {
         tasks: state.tasks,
-        bulk: state.bulk
+        bulk: state.bulk,
+        search:state.search
     }
 }
 const mapDispatchToProps = {
     removeTask,
-    displayBulkAction
+    displayBulkAction,
+    searchTask
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

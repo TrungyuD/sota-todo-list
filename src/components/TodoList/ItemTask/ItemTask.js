@@ -10,6 +10,7 @@ const ItemTask = ({task, bulk, removeTask, displayBulkAction}) => {
     const [isDetail, setDetail] = useState(false);
     const handleRemoveTask = () => {
         removeTask(task);
+        // setChecked(false);
         if(bulk.isDisplay && bulk.task === task) {
             displayBulkAction();
         }
