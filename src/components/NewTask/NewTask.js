@@ -38,7 +38,7 @@ function NewTask(props){
                 <label className="title-label">Description</label>
                 <textarea type="text" value={task.description} name="description" onChange={handleChange}/>
             </div>
-            <DatePiority date={setDate} piority={setPiority} />
+            <DatePiority isDetail={false} date={setDate} piority={setPiority} />
             <button className="btn-add" onClick={addNewTask}>
                 <span className="text-btn">Add</span>
             </button>

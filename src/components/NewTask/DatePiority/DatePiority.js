@@ -6,8 +6,8 @@ import arrow from '../../image/arrow.png';
 import './DatePiority.css';
 
 const DatePiority = (props) => {
-    const [startDate, setStartDate] = useState(new Date());
-    const [piority, setPiority] = useState('Normal');
+    const [startDate, setStartDate] = useState(props.isDetail ? new Date(props.date) : new Date());
+    const [piority, setPiority] = useState(props.isDetail ? props.piority : 'Normal');
     const handleChangeDate = (date) => {
         setStartDate(date);
         props.date(date);
