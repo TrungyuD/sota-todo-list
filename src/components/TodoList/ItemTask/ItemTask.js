@@ -15,6 +15,9 @@ const ItemTask = ({task, removeTask, displayBulkAction}) => {
         setChecked(!checked);
         displayBulkAction(task);
     }
+    const changeIsDetail = () => {
+        setDetail(!isDetail);
+    }
     return (
         <div className="container-item">
             <div className="content-item">
@@ -31,7 +34,7 @@ const ItemTask = ({task, removeTask, displayBulkAction}) => {
                     </button>
                 </div>
             </div>
-            { isDetail && <ItemDetail task={task}/> }
+            { isDetail && <ItemDetail task={task} changeIsDetail={changeIsDetail}/> }
         </div>
     )
 }

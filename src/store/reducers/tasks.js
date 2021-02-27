@@ -1,12 +1,15 @@
-import { ADD_TASK, REMOVE_TASK } from '../actions/tasks';
+import { ADD_TASK, REMOVE_TASK, UPDATE_TASK } from '../actions/tasks';
 
 export default function tasks(state = [], action) {
     switch (action.type) {
         case ADD_TASK:
             return state.concat([action.payload]);
         case REMOVE_TASK:
-            const new_state = state.filter(item => item !== action.payload);
-            return new_state;
+            const newState = state.filter(item => item !== action.payload);
+            return newState;
+        case UPDATE_TASK:
+            const updateState = state.filter(item => item !== action.payload.oldTask);
+            return updateState.concat([action.payload.newTask]);
         default:
             return state;
     }
