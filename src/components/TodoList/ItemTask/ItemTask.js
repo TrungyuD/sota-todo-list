@@ -5,11 +5,14 @@ import {displayBulkAction} from '../../../store/actions/bulk';
 import { connect } from 'react-redux';
 import ItemDetail from './ItemDetail';
 
-const ItemTask = ({task, removeTask, displayBulkAction}) => {
+const ItemTask = ({task, bulk, removeTask, displayBulkAction}) => {
     const [checked, setChecked] = useState(false);
     const [isDetail, setDetail] = useState(false);
     const handleRemoveTask = () => {
         removeTask(task);
+        if(bulk.isDisplay && bulk.task === task) {
+            displayBulkAction();
+        }
     }
     const handleChangeChecked = () => {
         setChecked(!checked);
@@ -38,8 +41,13 @@ const ItemTask = ({task, removeTask, displayBulkAction}) => {
         </div>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        bulk: state.bulk
+    }
+}
 const mapDispatchToProps = {
     removeTask,
     displayBulkAction
 }
-export default connect(null, mapDispatchToProps)(ItemTask);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemTask);

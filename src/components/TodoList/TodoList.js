@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './TodoList.css';
 import ItemTask from './ItemTask/ItemTask';
 import { connect } from 'react-redux';
@@ -13,6 +13,7 @@ const TodoList = ({tasks, bulk, removeTask, displayBulkAction}) => {
         removeTask(bulk.task);
         displayBulkAction();
     }
+    
     return (
         <div className="list">
             <div className="content-list">
