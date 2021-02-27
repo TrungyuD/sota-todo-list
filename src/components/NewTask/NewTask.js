@@ -21,12 +21,17 @@ function NewTask(props){
         setTask({...task, piority});
     }
     const addNewTask = () => {
-        props.addTaskAction(task)
-        setTask({
-            ...task,
-            title: "",
-            description: "",
-        })
+        if (task.title !== "") {
+            props.addTaskAction(task)
+            setTask({
+                ...task,
+                title: "",
+                description: "",
+            })
+        } else {
+            alert("Title is required!");
+        }
+        
     }
     return (
         <div className="new-task">
