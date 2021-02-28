@@ -9,7 +9,8 @@ function NewTask(props){
         title: "",
         description: "",
         date: new Date(),
-        piority: "Normal"
+        piority: "Normal",
+        isChecked: false,
     });
     const handleChange = (e) => {
         setTask({...task, [e.target.name]:e.target.value})

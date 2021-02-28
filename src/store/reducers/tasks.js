@@ -12,7 +12,10 @@ export default function tasks(state = [], action) {
             return newState;
         case UPDATE_TASK:
             const updateState = state.filter(item => item !== action.payload.oldTask);
-            return updateState.concat([action.payload.newTask]);
+            const sortState = updateState.concat([action.payload.newTask]).sort((a,b) => {
+                return new Date(a.date).getTime() - new Date(b.date).getTime() 
+            })
+            return sortState
         default:
             return state;
     }
