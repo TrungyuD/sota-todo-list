@@ -7,13 +7,10 @@ import {displayBulkAction} from '../../store/actions/bulk';
 import {searchTask} from '../../store/actions/search';
 
 const TodoList = ({tasks, bulk, search, removeTask, displayBulkAction, searchTask}) => {
-    let sortTasks = tasks.sort((a,b) => {
-        return new Date(a.date).getTime() - new Date(b.date).getTime() 
-    })
-    if (search) {
-        const length = search.length;
-        sortTasks = sortTasks.filter(item => item.title.substr(0,length) === search);
-    }
+    // if (search) {
+    //     const length = search.length;
+    //     tasks = tasks.filter(item => item.title.substr(0,length) === search);
+    // }
     const handleRemoveTask = () => {
         removeTask(bulk.task);
         displayBulkAction();
@@ -29,8 +26,9 @@ const TodoList = ({tasks, bulk, search, removeTask, displayBulkAction, searchTas
                     <input type="text" placeholder="Search ..." onChange={updateSearchTask}/>
                 </div>   
                 <div>
-                {
-                    sortTasks.map((task,key) => <ItemTask key={key} task={task} />)
+                {   search ? 
+                tasks = tasks.filter(item => item.title.substr(0,search.length) === search).map((task,key) => <ItemTask key={key} task={task} />) :
+                tasks.map((task,key) => <ItemTask key={key} task={task} />)
                 }
                 </div>     
             </div>

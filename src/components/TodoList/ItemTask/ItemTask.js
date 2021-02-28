@@ -26,7 +26,7 @@ const ItemTask = ({task, bulk, removeTask, displayBulkAction}) => {
         <div className="container-item">
             <div className="content-item">
                 <label className="checkbox">
-                    <input type="checkbox" onChange={handleChangeChecked} defaultChecked={checked}/>
+                    <input type="checkbox" onChange={handleChangeChecked} checked={checked}/>
                     <span style={{marginLeft:"0.5rem"}}>{task.title}</span>
                 </label>
                 <div className="">
