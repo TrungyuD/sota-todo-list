@@ -1,4 +1,4 @@
-import { ADD_TASK, REMOVE_TASK, UPDATE_TASK } from '../actions/tasks';
+import { ADD_TASK, CHECKED_TASK, REMOVE_TASK, UPDATE_TASK } from '../actions/tasks';
 
 export default function tasks(state = [], action) {
     switch (action.type) {
@@ -7,15 +7,21 @@ export default function tasks(state = [], action) {
                 return new Date(a.date).getTime() - new Date(b.date).getTime() 
             })
             return sortTasks;
+            // return state.concat([action.payload])
+            
         case REMOVE_TASK:
             const newState = state.filter(item => item !== action.payload);
             return newState;
         case UPDATE_TASK:
-            const updateState = state.filter(item => item !== action.payload.oldTask);
-            const sortState = updateState.concat([action.payload.newTask]).sort((a,b) => {
-                return new Date(a.date).getTime() - new Date(b.date).getTime() 
-            })
-            return sortState
+            const updateState = state.map(item => {
+                if(item === action.payload.oldTask) {
+                    return action.payload.newTask
+                }
+                return item;
+            });
+            return updateState;
+        case CHECKED_TASK:
+            return 
         default:
             return state;
     }
