@@ -22,12 +22,18 @@ const ItemDetail = ({task, updateTask, changeIsDetail}) => {
     }
     const handleUpdateTask = () => {
         console.log(newTask);
-        updateTask({
-            oldTask: task,
-            newTask
-        })
-        alert("Update task successfully!")
-        changeIsDetail();
+        if (newTask.title === "") {
+            alert("Title is required!")
+        } else {
+            updateTask({
+                oldTask: task,
+                newTask
+            })
+            alert("Update task successfully!")
+            changeIsDetail();
+        }
+        
+        
     }
     
     return (
